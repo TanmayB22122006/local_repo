@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack using Arrays</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        input {
+            padding: 8px;
+            width: 150px;
+        }
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stack using Arrays</h1>
+        <input type="number" id="value" placeholder="Enter value">
+        <button onclick="push()">Push</button>
+        <button onclick="pop()">Pop</button>
+        <button onclick="peek()">Peek</button>
+        <button onclick="display()">Display</button>
+        
+        <div class="output">
+            <p><strong>Stack:</strong> <span id="stack">[]</span></p>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        let stack = [];
+
+        function push() {
+            const value = document.getElementById('value').value;
+            if (value === '') {
+                document.getElementById('message').textContent = 'Please enter a value!';
+                return;
+            }
+            stack.push(parseInt(value));
+            document.getElementById('value').value = '';
+            document.getElementById('message').textContent = 'Element pushed!';
+            display();
+        }
+
+        function pop() {
+            if (stack.length === 0) {
+                document.getElementById('message').textContent = 'Stack is empty!';
+                return;
+            }
+            stack.pop();
+            document.getElementById('message').textContent = 'Element popped!';
+            display();
+        }
+
+        function peek() {
+            if (stack.length === 0) {
+                document.getElementById('message').textContent = 'Stack is empty!';
+                return;
+            }
+            document.getElementById('message').textContent = 'Top element: ' + stack[stack.length - 1];
+        }
+
+        function display() {
+            document.getElementById('stack').textContent = JSON.stringify(stack);
+        }
+    </script>
+</body>
+</html>
